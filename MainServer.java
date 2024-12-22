@@ -128,7 +128,6 @@ public class MainServer {
             String fileName = in.readUTF();
             long fileSize = in.readLong();
 
-            // Create temporary file to store incoming data
             File tempFile = File.createTempFile("upload", ".tmp");
             try (FileOutputStream fos = new FileOutputStream(tempFile)) {
                 byte[] buffer = new byte[CHUNK_SIZE];
@@ -141,13 +140,12 @@ public class MainServer {
                 }
             }
 
-            // Distribute file to sub-servers
             try {
                 distributeFile(tempFile, fileName);
-                out.writeBoolean(true); // Success
+                out.writeBoolean(true); 
                 System.out.println("Fichier distribué avec succès : " + fileName);
             } catch (IOException e) {
-                out.writeBoolean(false); // Failure
+                out.writeBoolean(false); 
                 System.err.println("Erreur lors de la distribution du fichier : " + e.getMessage());
             } finally {
                 tempFile.delete();
@@ -210,7 +208,6 @@ public class MainServer {
         }
 
         private void handleList() throws IOException {
-            // Collect unique file names from all sub-servers
             Set<String> uniqueFiles = new HashSet<>();
             
             for (SubServerInfo subServer : subServers) {
