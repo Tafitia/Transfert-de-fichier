@@ -1,0 +1,12 @@
+port=5000
+server.shared.directory=server_shared/
+client.download.directory=client_downloads/
+
+slave.port1=5001
+slave.directory.1=server_1/
+
+slave.port2=5002
+slave.directory.2=server_2/
+
+slave.port3=5003
+slave.directory.3=server_3/
