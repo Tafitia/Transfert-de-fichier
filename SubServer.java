@@ -165,9 +165,14 @@ public class SubServer {
                 return;
             }
 
-            List<File> fileList = Arrays.stream(files)
-                .filter(File::isFile)
-                .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+            List<File> fileList = new ArrayList<>();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isFile()) {  
+                        fileList.add(file);
+                    }
+                }
+            }
 
             out.writeInt(fileList.size());
             for (File file : fileList) {
