@@ -6,7 +6,7 @@ public class SubServer {
     private int port;
     private String storageDirectory;
     private Properties config;
-    private static final int CHUNK_SIZE = 1024 * 1024; // 1MB chunks
+    private static final int CHUNK_SIZE = 1024 * 1024; 
 
     public SubServer(int serverNumber) {
         loadConfiguration(serverNumber);
@@ -165,7 +165,6 @@ public class SubServer {
                 return;
             }
 
-            // Filter and write only files (not directories)
             List<File> fileList = Arrays.stream(files)
                 .filter(File::isFile)
                 .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
